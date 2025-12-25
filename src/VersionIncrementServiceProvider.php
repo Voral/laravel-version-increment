@@ -3,6 +3,7 @@
 namespace Vasoft\LaravelVersionIncrement;
 
 use Illuminate\Support\ServiceProvider;
+use Vasoft\LaravelVersionIncrement\Commands\DebugCommand;
 use Vasoft\LaravelVersionIncrement\Commands\ListCommand;
 use Vasoft\LaravelVersionIncrement\Commands\VersionIncrementCommand;
 
@@ -13,6 +14,7 @@ class VersionIncrementServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 ListCommand::class,
+                DebugCommand::class,
                 VersionIncrementCommand::class,
             ]);
         }
