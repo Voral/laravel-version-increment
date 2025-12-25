@@ -1,64 +1,69 @@
 # Laravel Adapter for `vs-version-incrementor`
 
-Этот пакет предоставляет **нативную Artisan-команду** для [**`vs-version-incrementor`**](https://github.com/Voral/vs-version-incrementor) — инструмента автоматического управления версиями и генерации `CHANGELOG.md` на основе анализа Git-коммитов.
+[RU](https://github.com/Voral/laravel-version-increment/blob/master/README.ru.md)
 
-Теперь вы можете использовать все возможности `vs-version-incrementor` прямо из Laravel-консоли — без вызова внешних скриптов.
+This package provides a **native Artisan command** for [**`vs-version-incrementor`
+**](https://github.com/Voral/vs-version-incrementor) — a tool for automated version management and `CHANGELOG.md`
+generation based on Git commit analysis.
+
+Now you can leverage all features of `vs-version-incrementor` directly from the Laravel console — without manually
+invoking external scripts.
 
 ---
 
-## Установка
+## Installation
 
-Установите пакет через Composer:
+Install the package via Composer:
 
 ```bash
 composer require voral/laravel-version-increment --dev
 ```
 
-> Пакет автоматически регистрируется благодаря Laravel Package Auto-Discovery.
+> The package is auto-registered thanks to Laravel Package Auto-Discovery.
 
 ---
 
-## Использование
+## Usage
 
-После установки доступен ряд команд.
+After installation, the following Artisan commands become available.
 
-Инкремент версии:
+### Increment the version:
 
 ```bash
-# Автоматическое определение типа релиза (по Conventional Commits)
+# Automatically detect the release type (based on Conventional Commits)
 php artisan vs-version:increment
 
-# Явное указание типа версии
+# Explicitly specify the version type
 php artisan vs-version:increment major
 php artisan vs-version:increment minor
 php artisan vs-version:increment patch
 ```
 
-Проверка изменений, которые попадут в следующую версию и предполагаемая следующая версия. Без правки файлов:
+### Preview changes that would be included in the next version and the expected new version — without modifying any files:
 
 ```bash
-# Автоматическое определение типа релиза (по Conventional Commits)
+# Automatically detect the release type
 php artisan vs-version:debug
 
-# Явное указание типа версии
+# Explicitly specify the version type
 php artisan vs-version:debug major
 php artisan vs-version:debug minor
 php artisan vs-version:debug patch
 ```
 
-Изменение файлов CHANGELOG.md и composer.json (если настроено), но без автоматического выполнения окончательного коммита:
+### Update `CHANGELOG.md` and `composer.json` (if configured), but skip creating the final Git commit and tag:
 
 ```bash
-# Автоматическое определение типа релиза (по Conventional Commits)
+# Automatically detect the release type
 php artisan vs-version:no-commit
 
-# Явное указание типа версии
+# Explicitly specify the version type
 php artisan vs-version:no-commit major
 php artisan vs-version:no-commit minor
 php artisan vs-version:no-commit patch
 ```
 
-Список возможных типов коммитов и скоупов:
+### List all registered commit types and scopes:
 
 ```bash
 php artisan vs-version:list
@@ -66,54 +71,39 @@ php artisan vs-version:list
 
 ---
 
-## Требования
+## Requirements
 
 - PHP 8.1+
-- Laravel 11 или 12
-- Git в `PATH`
-- Установленный `voral/version-increment` (устанавливается автоматически)
+- Laravel 11 or 12
+- Git available in `PATH`
+- `voral/version-increment` (installed automatically as a dependency)
 
 ---
 
-## Конфигурация
+## Configuration
 
-Пакет использует **ту же конфигурацию**, что и оригинальная утилита.  
-Создайте файл `.vs-version-increment.php` в корне проекта, чтобы настроить:
+The adapter uses **the same configuration file** as the original CLI tool.  
+Create `.vs-version-increment.php` in your project root to customize:
 
-- правила определения major/minor/patch,
-- формат CHANGELOG,
-- игнорирование untracked-файлов,
-- обработку squashed-коммитов,
-- кастомные типы коммитов и многое другое.
+- rules for determining major/minor/patch increments,
+- `CHANGELOG.md` formatting,
+- ignoring untracked files,
+- handling squashed commits,
+- custom commit types, and more.
 
-Подробнее: [Документация vs-version-incrementor](https://github.com/Voral/vs-version-incrementor/blob/master/README.ru.md#конфигурирование)
+See the full
+documentation: [vs-version-incrementor Configuration Guide](https://github.com/Voral/vs-version-incrementor?tab=readme-ov-file#configuration)
 
----
+## Implementation Details
 
-## События и расширяемость
-
-Утилита поддерживает **событийную модель через `EventBus`**, что позволяет:
-
-- слушать события `BEFORE_VERSION_SET`, `AFTER_VERSION_SET_SUCCESS`, `ON_ERROR`,
-- отправлять уведомления в Slack/Telegram,
-- логировать операции,
-- интегрировать с внешними системами.
-
-События работают **точно так же**, как в CLI-версии — без изменений.
-
-Подробнее: [Документация vs-version-incrementor](https://github.com/Voral/vs-version-incrementor/blob/master/README.ru.md#обработка-событий-с-использованием-eventbus)
+This package is a **thin wrapper** around the original utility: it invokes `./vendor/bin/vs-version-increment` with the
+appropriate arguments and flags, ensuring **full behavioral parity** with the standalone CLI tool.
 
 ---
 
-## Разработка
+## License
 
-Пакет является **тонкой обёрткой** над оригинальной утилитой: он вызывает `./vendor/bin/vs-version-increment` с передачей всех аргументов и флагов, обеспечивая **полное поведенческое соответствие**.
+MIT. See [LICENSE](LICENSE) for details.
 
----
-
-## Лицензия
-
-MIT. Смотрите [LICENSE](LICENSE) для подробностей.
-
-> **Зависит от**: [vs-version-incrementor](https://github.com/Voral/vs-version-incrementor) — автоматическое управление версиями по Git-истории.
-
+> **Depends on**: [vs-version-incrementor](https://github.com/Voral/vs-version-incrementor) — automated versioning based
+> on Git history.
