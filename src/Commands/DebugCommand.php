@@ -20,6 +20,7 @@ class DebugCommand extends Command
 
         try {
             $runner->debug($type);
+            $this->output->write($runner->getLastOutput());
         } catch (ModuleException $e) {
             $this->error($e->getMessage());
 

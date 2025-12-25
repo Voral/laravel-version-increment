@@ -21,6 +21,7 @@ class IncrementCommand extends Command
 
         try {
             $runner->increment($type);
+            $this->output->write($runner->getLastOutput());
         } catch (ModuleException $e) {
             $this->error($e->getMessage());
 
