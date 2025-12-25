@@ -86,7 +86,7 @@ php artisan vs-version:list
 - обработку squashed-коммитов,
 - кастомные типы коммитов и многое другое.
 
-Подробнее: [Документация vs-version-incrementor](https://github.com/Voral/vs-version-incrementor#%D0%9A%D0%BE%D0%BD%D1%84%D0%B8%D0%B3%D1%83%D1%80%D0%B0%D1%86%D0%B8%D1%8F)
+Подробнее: [Документация vs-version-incrementor](https://github.com/Voral/vs-version-incrementor/blob/master/README.ru.md#конфигурирование)
 
 ---
 
@@ -100,6 +100,8 @@ php artisan vs-version:list
 - интегрировать с внешними системами.
 
 События работают **точно так же**, как в CLI-версии — без изменений.
+
+Подробнее: [Документация vs-version-incrementor](https://github.com/Voral/vs-version-incrementor/blob/master/README.ru.md#обработка-событий-с-использованием-eventbus)
 
 ---
 
