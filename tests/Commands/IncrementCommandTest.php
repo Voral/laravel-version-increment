@@ -10,7 +10,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Vasoft\LaravelVersionIncrement\Commands\CommandRunner;
-use Vasoft\LaravelVersionIncrement\Commands\DebugCommand;
+use Vasoft\LaravelVersionIncrement\Commands\IncrementCommand;
 use Vasoft\LaravelVersionIncrement\Exceptions\ProcessException;
 use Vasoft\Tests\LaravelVersionIncrement\TestCase;
 use Symfony\Component\Console\Command\Command;
@@ -18,9 +18,9 @@ use Symfony\Component\Console\Command\Command;
 /**
  * @internal
  *
- * @coversDefaultClass \Vasoft\LaravelVersionIncrement\Commands\DebugCommand
+ * @coversDefaultClass \Vasoft\LaravelVersionIncrement\Commands\IncrementCommand
  */
-final class DebugCommandTest extends TestCase
+final class IncrementCommandTest extends TestCase
 {
     use PHPMock;
 
@@ -28,7 +28,7 @@ final class DebugCommandTest extends TestCase
 
     public function testHasCorrectSignatureAndDescription(): void
     {
-        $command = new DebugCommand();
+        $command = new IncrementCommand();
 
         $argument = $command->getDefinition()->getArgument('type');
         self::assertTrue(false === $argument->isRequired());
@@ -36,9 +36,9 @@ final class DebugCommandTest extends TestCase
             'One of: major, minor, patch, or leave empty for auto',
             $argument->getDescription(),
         );
-        self::assertSame('vs-version:debug', $command->getName());
+        self::assertSame('vs-version:increment', $command->getName());
         self::assertSame(
-            'Preview the changes without actually applying them',
+            'Increment project version using voral/vs-version-increment',
             $command->getDescription(),
         );
     }
@@ -48,9 +48,9 @@ final class DebugCommandTest extends TestCase
     {
         $runner = self::createMock(CommandRunner::class);
         $runner->expects(self::once())
-            ->method('debug');
+            ->method('increment');
 
-        $command = $this->getMockBuilder(DebugCommand::class)
+        $command = $this->getMockBuilder(IncrementCommand::class)
             ->onlyMethods(['argument'])
             ->getMock();
 
@@ -82,10 +82,10 @@ final class DebugCommandTest extends TestCase
         $exceptionMessage = 'Failure';
         $runner = self::createMock(CommandRunner::class);
         $runner->expects(self::once())
-            ->method('debug')
+            ->method('increment')
             ->willThrowException(new ProcessException($exceptionMessage));
 
-        $command = $this->getMockBuilder(DebugCommand::class)
+        $command = $this->getMockBuilder(IncrementCommand::class)
             ->onlyMethods(['argument', 'error'])
             ->getMock();
 

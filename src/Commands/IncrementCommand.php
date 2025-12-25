@@ -7,11 +7,12 @@ namespace Vasoft\LaravelVersionIncrement\Commands;
 use Illuminate\Console\Command;
 use Vasoft\LaravelVersionIncrement\Exceptions\ModuleException;
 
-class NoCommitCommand extends Command
+class IncrementCommand extends Command
 {
-    protected $signature = 'vs-version:no-commit
+    protected $signature = 'vs-version:increment
                             {type? : One of: major, minor, patch, or leave empty for auto}';
-    protected $description = 'Process without making a commit and version tag';
+
+    protected $description = 'Increment project version using voral/vs-version-increment';
 
     public function handle(?CommandRunner $runner = null): int
     {
@@ -19,7 +20,7 @@ class NoCommitCommand extends Command
         $type = (string) $this->argument('type');
 
         try {
-            $runner->noCommit($type);
+            $runner->increment($type);
         } catch (ModuleException $e) {
             $this->error($e->getMessage());
 

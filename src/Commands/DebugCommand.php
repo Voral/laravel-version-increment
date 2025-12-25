@@ -9,17 +9,14 @@ use Vasoft\LaravelVersionIncrement\Exceptions\ModuleException;
 
 class DebugCommand extends Command
 {
-    protected $signature = 'vs-version:debug';
+    protected $signature = 'vs-version:debug
+                            {type? : One of: major, minor, patch, or leave empty for auto}';
     protected $description = 'Preview the changes without actually applying them';
 
     public function handle(?CommandRunner $runner = null): int
     {
         $runner ??= new CommandRunner();
-        if ($this->argument('type')) {
-            $type = (string) $this->argument('type');
-        } else {
-            $type = '';
-        }
+        $type = (string) $this->argument('type');
 
         try {
             $runner->debug($type);

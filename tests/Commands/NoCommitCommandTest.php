@@ -30,6 +30,12 @@ final class NoCommitCommandTest extends TestCase
     {
         $command = new NoCommitCommand();
 
+        $argument = $command->getDefinition()->getArgument('type');
+        self::assertTrue(false === $argument->isRequired());
+        self::assertSame(
+            'One of: major, minor, patch, or leave empty for auto',
+            $argument->getDescription(),
+        );
         self::assertSame('vs-version:no-commit', $command->getName());
         self::assertSame(
             'Process without making a commit and version tag',

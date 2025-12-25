@@ -7,7 +7,7 @@ namespace Vasoft\Tests\LaravelVersionIncrement;
 use Vasoft\LaravelVersionIncrement\Commands\ListCommand;
 use Vasoft\LaravelVersionIncrement\VersionIncrementServiceProvider;
 use Illuminate\Contracts\Console\Kernel;
-use Vasoft\LaravelVersionIncrement\Commands\VersionIncrementCommand;
+use Vasoft\LaravelVersionIncrement\Commands\IncrementCommand;
 
 /**
  * @internal
@@ -23,7 +23,7 @@ final class VersionIncrementServiceProviderTest extends TestCase
         $commands = $this->app->make(Kernel::class)->all();
 
         self::assertArrayHasKey('vs-version:increment', $commands);
-        self::assertInstanceOf(VersionIncrementCommand::class, $commands['vs-version:increment']);
+        self::assertInstanceOf(IncrementCommand::class, $commands['vs-version:increment']);
         self::assertArrayHasKey('vs-version:list', $commands);
         self::assertInstanceOf(ListCommand::class, $commands['vs-version:list']);
     }
