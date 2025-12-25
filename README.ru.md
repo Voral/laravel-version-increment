@@ -2,6 +2,10 @@
 
 [EN](https://github.com/Voral/laravel-version-increment/blob/master/README.ru.md)
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Voral/laravel-version-increment/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Voral/laravel-version-increment/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/Voral/laravel-version-increment/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/Voral/laravel-version-increment/?branch=master)
+[![Code Intelligence Status](https://scrutinizer-ci.com/g/Voral/laravel-version-increment/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence) \
+![PHP Tests](https://github.com/Voral/laravel-version-increment/actions/workflows/php.yml/badge.svg)
 
 Этот пакет предоставляет **нативную Artisan-команду** для [**`vs-version-incrementor`
 **](https://github.com/Voral/vs-version-incrementor) — инструмента автоматического управления версиями и генерации
