@@ -7,8 +7,7 @@
 [![Code Intelligence Status](https://scrutinizer-ci.com/g/Voral/laravel-version-increment/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence) \
 ![PHP Tests](https://github.com/Voral/laravel-version-increment/actions/workflows/php.yml/badge.svg)
 
-This package provides a **native Artisan command** for [**`vs-version-incrementor`
-**](https://github.com/Voral/vs-version-incrementor) — a tool for automated version management and `CHANGELOG.md`
+This package provides a **native Artisan command** for [`vs-version-incrementor`](https://github.com/Voral/vs-version-incrementor) — a tool for automated version management and `CHANGELOG.md`
 generation based on Git commit analysis.
 
 Now you can leverage all features of `vs-version-incrementor` directly from the Laravel console — without manually
