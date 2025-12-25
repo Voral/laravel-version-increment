@@ -16,7 +16,7 @@ class NoCommitCommand extends Command
     public function handle(?CommandRunner $runner = null): int
     {
         $runner ??= new CommandRunner();
-        $type = (string) $this->argument('type');
+        $type = is_string($this->argument('type')) ? $this->argument('type') : '';
 
         try {
             $runner->noCommit($type);

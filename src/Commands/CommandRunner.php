@@ -55,6 +55,8 @@ class CommandRunner
     }
 
     /**
+     * @param array<string> $args
+     *
      * @throws ProcessException
      * @throws ToolStartFailedException
      */
