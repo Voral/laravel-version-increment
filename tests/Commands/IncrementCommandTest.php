@@ -50,7 +50,7 @@ final class IncrementCommandTest extends TestCase
         $runner->expects(self::once())
             ->method('increment');
 
-        $command = $this->getMockBuilder(IncrementCommand::class)
+        $command = self::getMockBuilder(IncrementCommand::class)
             ->onlyMethods(['argument'])
             ->getMock();
 
@@ -85,7 +85,7 @@ final class IncrementCommandTest extends TestCase
             ->method('increment')
             ->willThrowException(new ProcessException($exceptionMessage));
 
-        $command = $this->getMockBuilder(IncrementCommand::class)
+        $command = self::getMockBuilder(IncrementCommand::class)
             ->onlyMethods(['argument', 'error'])
             ->getMock();
 

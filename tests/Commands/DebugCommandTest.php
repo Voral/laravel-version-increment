@@ -50,7 +50,7 @@ final class DebugCommandTest extends TestCase
         $runner->expects(self::once())
             ->method('debug');
 
-        $command = $this->getMockBuilder(DebugCommand::class)
+        $command = self::getMockBuilder(DebugCommand::class)
             ->onlyMethods(['argument'])
             ->getMock();
 
@@ -85,7 +85,7 @@ final class DebugCommandTest extends TestCase
             ->method('debug')
             ->willThrowException(new ProcessException($exceptionMessage));
 
-        $command = $this->getMockBuilder(DebugCommand::class)
+        $command = self::getMockBuilder(DebugCommand::class)
             ->onlyMethods(['argument', 'error'])
             ->getMock();
 

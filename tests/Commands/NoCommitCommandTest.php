@@ -51,7 +51,7 @@ final class NoCommitCommandTest extends TestCase
             ->method('noCommit')
             ->with($type);
 
-        $command = $this->getMockBuilder(NoCommitCommand::class)
+        $command = self::getMockBuilder(NoCommitCommand::class)
             ->onlyMethods(['argument'])
             ->getMock();
 
@@ -86,7 +86,7 @@ final class NoCommitCommandTest extends TestCase
             ->method('noCommit')
             ->willThrowException(new ProcessException($exceptionMessage));
 
-        $command = $this->getMockBuilder(NoCommitCommand::class)
+        $command = self::getMockBuilder(NoCommitCommand::class)
             ->onlyMethods(['argument', 'error'])
             ->getMock();
 
