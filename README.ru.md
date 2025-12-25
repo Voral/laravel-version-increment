@@ -1,4 +1,4 @@
-# Laravel Adapter for `vs-version-incrementor`
+# Laravel адаптер для `vs-version-incrementor`
 
 [EN](https://github.com/Voral/laravel-version-increment/blob/master/README.ru.md)
 
@@ -7,9 +7,8 @@
 [![Code Intelligence Status](https://scrutinizer-ci.com/g/Voral/laravel-version-increment/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence) \
 ![PHP Tests](https://github.com/Voral/laravel-version-increment/actions/workflows/php.yml/badge.svg)
 
-Этот пакет предоставляет **нативную Artisan-команду** для [`vs-version-incrementor`
-](https://github.com/Voral/vs-version-incrementor) — инструмента автоматического управления версиями и генерации
-`CHANGELOG.md` на основе анализа Git-коммитов.
+Этот пакет предоставляет **нативную Artisan-команду** для [`vs-version-incrementor`](https://github.com/Voral/vs-version-incrementor) — инструмента автоматического 
+управления версиями и генерации `CHANGELOG.md` на основе анализа Git-коммитов.
 
 Теперь вы можете использовать все возможности `vs-version-incrementor` прямо из Laravel-консоли — без вызова внешних
 скриптов.
