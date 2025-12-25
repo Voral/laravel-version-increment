@@ -52,7 +52,7 @@
         "check": "Run all checks, including coding standards and static analysis."
     },
     "require": {
-        "php": ">=8.1",
+        "php": ">=8.2",
         "illuminate/console": "*",
         "voral/version-increment": "^3.2"
     },
