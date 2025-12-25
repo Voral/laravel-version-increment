@@ -4,7 +4,8 @@
   "license": "MIT",
   "autoload": {
     "psr-4": {
-      "Vasoft\\LaravelVersionIncrement\\": "src/"
+      "Vasoft\\LaravelVersionIncrement\\": "src/",
+      "Vasoft\\Tests\\LaravelVersionIncrement\\": "tests/"
     }
   },
   "version": "0.1.1",
