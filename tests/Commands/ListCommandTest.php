@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace Vasoft\Tests\LaravelVersionIncrement\Commands;
 
-use Illuminate\Console\OutputStyle;
 use phpmock\phpunit\PHPMock;
-use Symfony\Component\Console\Input\ArrayInput;
-use Symfony\Component\Console\Output\BufferedOutput;
+use Vasoft\LaravelVersionIncrement\Commands\CommandRunner;
 use Vasoft\LaravelVersionIncrement\Commands\ListCommand;
 use Vasoft\Tests\LaravelVersionIncrement\TestCase;
 use Symfony\Component\Console\Command\Command;
@@ -36,15 +34,11 @@ final class ListCommandTest extends TestCase
 
     public function testHandlesCorrectly(): void
     {
+        $runner = $this->createMock(CommandRunner::class);
+        $runner->expects(self::once())->method('list');
+
         $command = new ListCommand();
-        $command->setLaravel($this->app);
-        $laravelOutput = new OutputStyle(new ArrayInput([]), new BufferedOutput());
-        $command->setOutput($laravelOutput);
-
-        $passthru = $this->getFunctionMock(self::TESTED_NAMESPACE, 'passthru');
-        $passthru->expects(self::once())->with('./vendor/bin/vs-version-increment --list');
-
-        $exitCode = $command->handle();
+        $exitCode = $command->handle($runner);
 
         self::assertSame(Command::SUCCESS, $exitCode);
     }

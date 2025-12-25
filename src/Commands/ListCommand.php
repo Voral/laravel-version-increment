@@ -11,9 +11,10 @@ class ListCommand extends Command
     protected $signature = 'vs-version:list';
     protected $description = 'List registered commit types and scopes';
 
-    public function handle(): int
+    public function handle(?CommandRunner $runner = null): int
     {
-        passthru('./vendor/bin/vs-version-increment --list');
+        $runner ??= new CommandRunner();
+        $runner->list();
 
         return self::SUCCESS;
     }
