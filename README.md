@@ -20,13 +20,9 @@ composer require voral/laravel-version-increment --dev
 
 ## Использование
 
-После установки доступна команда:
+После установки доступен ряд команд.
 
-```bash
-php artisan vs-version:increment
-```
-
-### Основные варианты вызова
+Инкремент версии:
 
 ```bash
 # Автоматическое определение типа релиза (по Conventional Commits)
@@ -36,18 +32,37 @@ php artisan vs-version:increment
 php artisan vs-version:increment major
 php artisan vs-version:increment minor
 php artisan vs-version:increment patch
-
-# Просмотр изменений без применения (--debug)
-php artisan vs-version:increment --debug
-
-# Применить изменения, но не создавать Git-коммит и тег (--no-commit)
-php artisan vs-version:increment --no-commit
-
-# Показать зарегистрированные типы коммитов и scope'ы
-php artisan vs-version:increment --list
 ```
 
-Все опции полностью соответствуют оригинальной утилите `vs-version-incrementor`.
+Проверка изменений, которые попадут в следующую версию и предполагаемая следующая версия. Без правки файлов:
+
+```bash
+# Автоматическое определение типа релиза (по Conventional Commits)
+php artisan vs-version:debug
+
+# Явное указание типа версии
+php artisan vs-version:debug major
+php artisan vs-version:debug minor
+php artisan vs-version:debug patch
+```
+
+Изменение файлов CHANGELOG.md и composer.json (если настроено), но без автоматического выполнения окончательного коммита:
+
+```bash
+# Автоматическое определение типа релиза (по Conventional Commits)
+php artisan vs-version:no-commit
+
+# Явное указание типа версии
+php artisan vs-version:no-commit major
+php artisan vs-version:no-commit minor
+php artisan vs-version:no-commit patch
+```
+
+Список возможных типов коммитов и скоупов:
+
+```bash
+php artisan vs-version:list
+```
 
 ---
 
