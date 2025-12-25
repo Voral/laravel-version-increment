@@ -75,7 +75,7 @@ php artisan vs-version:list
 
 ## Требования
 
-- PHP 8.1+
+- PHP 8.2+
 - Laravel 11 или 12
 - Git в `PATH`
 - Установленный `voral/version-increment` (устанавливается автоматически)
