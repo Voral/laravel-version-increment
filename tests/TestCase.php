@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Vasoft\Tests\LaravelVersionIncrement;
 
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
+use Vasoft\LaravelVersionIncrement\VersionIncrementServiceProvider;
 
 abstract class TestCase extends OrchestraTestCase
 {
@@ -20,7 +23,7 @@ abstract class TestCase extends OrchestraTestCase
     protected function getPackageProviders($app): array
     {
         return [
-            \Vasoft\LaravelVersionIncrement\VersionIncrementServiceProvider::class,
+            VersionIncrementServiceProvider::class,
         ];
     }
 }

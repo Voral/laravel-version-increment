@@ -123,6 +123,7 @@ final class CommandRunnerTest extends TestCase
         self::expectExceptionMessage($expectedErrorMessage);
         $runner->debug('');
     }
+
     /**
      * @throws ProcessException
      * @throws ToolStartFailedException
