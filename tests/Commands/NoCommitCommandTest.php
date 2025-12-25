@@ -10,7 +10,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Vasoft\LaravelVersionIncrement\Commands\CommandRunner;
-use Vasoft\LaravelVersionIncrement\Commands\DebugCommand;
+use Vasoft\LaravelVersionIncrement\Commands\NoCommitCommand;
 use Vasoft\LaravelVersionIncrement\Exceptions\ProcessException;
 use Vasoft\Tests\LaravelVersionIncrement\TestCase;
 use Symfony\Component\Console\Command\Command;
@@ -18,9 +18,9 @@ use Symfony\Component\Console\Command\Command;
 /**
  * @internal
  *
- * @coversDefaultClass \Vasoft\LaravelVersionIncrement\Commands\DebugCommand
+ * @coversDefaultClass \Vasoft\LaravelVersionIncrement\Commands\NoCommitCommand
  */
-final class DebugCommandTest extends TestCase
+final class NoCommitCommandTest extends TestCase
 {
     use PHPMock;
 
@@ -28,29 +28,30 @@ final class DebugCommandTest extends TestCase
 
     public function testHasCorrectSignatureAndDescription(): void
     {
-        $command = new DebugCommand();
+        $command = new NoCommitCommand();
 
-        self::assertSame('vs-version:debug', $command->getName());
+        self::assertSame('vs-version:no-commit', $command->getName());
         self::assertSame(
-            'Preview the changes without actually applying them',
+            'Process without making a commit and version tag',
             $command->getDescription(),
         );
     }
 
     #[DataProvider('provideHandlesCorrectlyCases')]
-    public function testHandlesCorrectly(): void
+    public function testHandlesCorrectly(string $type): void
     {
         $runner = self::createMock(CommandRunner::class);
         $runner->expects(self::once())
-            ->method('debug');
+            ->method('noCommit')
+            ->with($type);
 
-        $command = $this->getMockBuilder(DebugCommand::class)
+        $command = $this->getMockBuilder(NoCommitCommand::class)
             ->onlyMethods(['argument'])
             ->getMock();
 
         $command->method('argument')
             ->with('type')
-            ->willReturn('major');
+            ->willReturn($type);
 
         $command->setLaravel($this->app);
         $laravelOutput = new OutputStyle(new ArrayInput([]), new BufferedOutput());
@@ -76,10 +77,10 @@ final class DebugCommandTest extends TestCase
         $exceptionMessage = 'Failure';
         $runner = self::createMock(CommandRunner::class);
         $runner->expects(self::once())
-            ->method('debug')
+            ->method('noCommit')
             ->willThrowException(new ProcessException($exceptionMessage));
 
-        $command = $this->getMockBuilder(DebugCommand::class)
+        $command = $this->getMockBuilder(NoCommitCommand::class)
             ->onlyMethods(['argument', 'error'])
             ->getMock();
 

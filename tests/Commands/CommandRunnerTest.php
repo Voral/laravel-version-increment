@@ -313,7 +313,6 @@ final class CommandRunnerTest extends TestCase
             ['major'],
             ['minor'],
             ['patch'],
-            ['patch'],
         ];
     }
 }
