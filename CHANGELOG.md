@@ -1,3 +1,8 @@
+# 3.0.0 (2025-12-26)
+
+First stable release.
+Major version aligned with voral/version-increment v3.
+
 # 0.3.0 (2025-12-25)
 
 ### New features
